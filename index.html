@@ -71,18 +71,18 @@
                 <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="" id="firstClass-quantity">
+                    <input id="firstClass-quantity" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                
                 <div class="plus-minus-btn">
                     <button
-                      id="firstClass-add"
+                    onclick="handleTicketBook('firstClass', true)"
                       class="btn btn-default"
                     >
                       <i class="fas fa-plus"></i>
                     </button>
                 <button
-                      id="firstClass-remove"
+                onclick="handleTicketBook('firstClass', false)"
                       class="btn btn-default"
                     >
                       <i class="fas fa-minus"></i>
@@ -97,13 +97,13 @@
                     </div>
                     <div class="plus-minus-btn">
                         <button
-                           onclick="handleTicketBook(true)"
+                           onclick="handleTicketBook('economy', true)"
                           class="btn btn-default"
                         >
                           <i class="fas fa-plus"></i>
                         </button>
                     <button
-                          onclick="handleTicketBook(false)"
+                          onclick="handleTicketBook('economy', false)"
                           class="btn btn-default"
                         >
                           <i class="fas fa-minus"></i>
@@ -145,36 +145,66 @@
     </main>
 
     <script>
-       
-       function handleTicketBook(isIncrease){
-        const economyInput = document.getElementById('economy-quantity');
-            const economyCount = parseInt(economyInput.value);
-            let economyNewCount = economyCount;
-            if(isIncrease == true){
-                economyNewCount = economyCount + 1;
-            }
-            if(isIncrease == false && economyCount > 0 ){
-                economyNewCount = economyCount - 1;
-            }
-            economyInput.value = economyNewCount;
-            const economyTotalCount = economyCount * 100;
-            // document.getElementById('economyTotal').innerText = economyTotalCount;
-       }
 
-       function handleTicketBook(isIncrease){
-        const economyInput = document.getElementById('economy-quantity');
-            const economyCount = parseInt(economyInput.value);
-            let economyNewCount = economyCount;
+        function handleTicketBook(ticket, isIncrease){ 
+        const ticketInput = document.getElementById(ticket + '-quantity');
+            const ticketCount = parseInt(ticketInput.value);
+            let ticketNewCount = ticketCount;
             if(isIncrease == true){
-                economyNewCount = economyCount + 1;
+                ticketNewCount = ticketCount + 1;
             }
-            if(isIncrease == false && economyCount > 0 ){
-                economyNewCount = economyCount - 1;
+            if(isIncrease == false && ticketCount > 0 ){
+                ticketNewCount = ticketCount - 1;
             }
-            economyInput.value = economyNewCount;
-            const economyTotalCount = economyCount * 100;
-            // document.getElementById('economyTotal').innerText = economyTotalCount;
-       }
+            ticketInput.value = ticketNewCount;
+            let  ticketTotal = 0;
+            if(ticket == 'firstClass'){
+                ticketTotal = ticketNewCount * 150;
+                console.log(ticketTotal);
+            }
+            if(ticket == 'economy'){
+                ticketTotal = ticketNewCount * 100;
+                console.log(ticketTotal);
+            }
+
+            // document.getElementById(ticket + '-total').innerText = ticketTotal;
+       }    
+       
+       //2nd Code
+
+    //    function handleFirstClassBook(isIncrease){
+    //     const firstClassInput = document.getElementById('firstClass-quantity');
+    //         const firstClassCount = parseInt(firstClassInput.value);
+    //         let firstClassNewCount = firstClassCount;
+    //         if(isIncrease == true){
+    //             firstClassNewCount = firstClassCount + 1;
+    //         }
+    //         if(isIncrease == false && firstClassCount > 0 ){
+    //             firstClassNewCount = firstClassCount - 1;
+    //         }
+    //         firstClassInput.value = firstClassNewCount;
+    //         const firstClassTotal = firstClassNewCount * 150;
+    //         // console.log(firstClassTotal);
+    //         // document.getElementById('economyTotal').innerText = economyTotalCount;
+    //    }
+
+    //    function handleEconomyBook(isIncrease){
+    //     const economyInput = document.getElementById('economy-quantity');
+    //         const economyCount = parseInt(economyInput.value);
+    //         let economyNewCount = economyCount;
+    //         if(isIncrease == true){
+    //             economyNewCount = economyCount + 1;
+    //         }
+    //         if(isIncrease == false && economyCount > 0 ){
+    //             economyNewCount = economyCount - 1;
+    //         }
+    //         economyInput.value = economyNewCount;
+    //         const economyTotal = economyCount * 100;
+    //         // console.log(economyTotal);
+    //         // document.getElementById('economyTotal').innerText = economyTotalCount;
+    //    }
+
+        //Fist Code
 
        // document.getElementById('economy-add').addEventListener('click', function(){
         //     const economyInput = document.getElementById('economy-quantity');
